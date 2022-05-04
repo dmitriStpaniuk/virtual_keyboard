@@ -16,7 +16,7 @@ const devServer = (isDev) => (!isDev
     },
   });
 
-export default ({ develop }) => ({
+module.exports = ({ develop }) => ({
   mode: develop ? 'development' : 'production',
   devtool: develop ? 'inline-source-map' : false,
   entry: {
@@ -34,11 +34,11 @@ export default ({ develop }) => ({
       { test: /\.(woff(2)|eot|ttf|otf)$/i, type: 'assets/resource' },
       {
         test: /\.css$/i,
-        use: [loader, 'css-loader'],
+        use: ['css-loader'],
       },
       {
         test: /\.scss$/i,
-        use: [loader, 'css-loader', 'sass-loader'],
+        use: ['css-loader', 'sass-loader'],
       },
     ],
   },
