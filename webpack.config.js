@@ -34,7 +34,7 @@ module.exports = ({ develop }) => ({
       { test: /\.(woff(2)|eot|ttf|otf)$/i, type: 'assets/resource' },
       {
         test: /\.css$/i,
-        use: ['css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/i,
