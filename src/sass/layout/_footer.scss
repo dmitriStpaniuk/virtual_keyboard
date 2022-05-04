@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+.wrapper-key {
+  padding: $kb-inset;
+  box-sizing: border-box;
+  background-color: $c-kb-bg;
+  width: $kb-r-w + ($kb-inset * 2);
+  border-radius: $k-br * 2;
+  margin: 24px auto;
+  box-shadow: 0px 4px 0px 2px darken($c-kb-bg, 20%);
+}
+.key-row {
+  display: flex;
+  margin-bottom: $kb-sp;
+  font-size: 10px;
+  width: $kb-r-w;
+}
+.key {
+ padding-top: 10px;
+  font-size: $mil /2;
+  display: inline-block;
+  text-align: center;
+  width: $k-w;
+  height: $k-h;
+  margin-right: $kb-sp;
+  border-radius: $k-br;
+  background-color: $c-k-bg;
+  color: $c-k-c;
+  box-shadow: 0px 2px 0px 1px darken($c-kb-bg, 10%);
+  &.backspace {
+    width: $k-w-25;
+  }
+  &.capsLock {
+    width: $k-w-3;
+  }
+  &.tab {
+    width: $k-w-25;
+  }
+  &.enter,
+  &.shift {
+    width: $k-w-39;
+  }
+  &.space {
+    width: 275px;
+  }
+}

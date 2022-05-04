@@ -1,0 +1,79 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Regular font family
+/// @type List
+$text-font-stack: "Open Sans", "Helvetica Neue Light", "Helvetica Neue",
+  "Helvetica", "Arial", sans-serif !default;
+
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+  "Monaco", monospace !default;
+
+/// Copy text color
+/// @type Color
+$text-color: rgb(34, 34, 34) !default;
+
+/// Main brand color
+/// @type Color
+$brand-color: rgb(229, 0, 80) !default;
+
+/// Light grey
+/// @type Color
+$light-grey: rgb(237, 237, 237) !default;
+
+/// Medium grey
+/// @type Color
+$mid-grey: rgb(153, 153, 153) !default;
+
+/// Dark grey
+/// @type Color
+$dark-grey: rgb(68, 68, 68) !default;
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  "small": 320px,
+  "medium": 768px,
+  "large": 1024px,
+) !default;
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: "/assets/" !default;
+$mil: 24px;
+
+// keyboard vars
+$k-br: $mil * 0.15; // border radius
+$kb-inset: $mil * 0.4; // keyboard inset
+$k-h: $mil * 1.5; // key height
+$a-h: $k-h / 2; // arrow height
+$k-w: $mil * 1.5; // standard
+$k-w-2: $mil * 2; // cmnds
+$k-w-25: $mil * 2.5; // del and tab
+$k-w-3: $mil * 3; // caps and return
+$k-w-39: $mil * 3.9; // shifts
+$k-w-91: $mil * 9.1; // spacebar
+$kb-sp: $mil * 0.35; // spacing
+$kb-r-w: ($k-w-2 * 2) + ($k-w * 7) + $k-w-91 + ($kb-sp * 9); // row width
+
+$c-kb-bg: #f0f0f0; // keyboard background
+$c-k-bg: #fff; // key background
+$c-k-c: #444; // key color
+$c-b-bg: #7f8c8d; // body bg
+
+$c-mac: #222; //
+$c-mac-screen: #444; // screen color
+
+// mac vars
+$m-h-s: $mil * 12;
+$m-w-s: $kb-r-w;
