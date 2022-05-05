@@ -4,7 +4,7 @@ import {
   // EnAbc, EnAbcShift,
 } from './state';
 
-const ru = RuAbc;
+let ru = RuAbc;
 
 const { body } = document;
 export const pc = () => {
@@ -47,8 +47,20 @@ export const key = () => {
   body.append(wrapperKey);
 };
 body.addEventListener('keydown', (e) => {
-  // if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-  //   ru = RuAbcShift;
-  console.log(e);
-  // }
+  if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+    ru = RuAbcShift;
+    body.innerHTML = '';
+    pc();
+    key();
+    console.log(e);
+  }
+});
+body.addEventListener('keyup', (e) => {
+  if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+    ru = RuAbc;
+    body.innerHTML = '';
+    pc();
+    key();
+    console.log(e);
+  }
 });
