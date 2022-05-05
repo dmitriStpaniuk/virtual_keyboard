@@ -1,5 +1,10 @@
 import { createElement } from './createElement';
-import { RuAbc } from './state';
+import {
+  RuAbc, RuAbcShift,
+  // EnAbc, EnAbcShift,
+} from './state';
+
+const ru = RuAbc;
 
 const { body } = document;
 export const pc = () => {
@@ -14,6 +19,7 @@ export const pc = () => {
   body.append(wrapper);
   wrapper.append(textarea);
 };
+
 export const key = () => {
   const wrapperKey = createElement({
     element: 'div',
@@ -28,9 +34,9 @@ export const key = () => {
       element: 'div',
       className: 'key-row',
     });
-    RuAbc[i].forEach(({ value, className }:{ value:string, className:string }) => {
+    ru[i].forEach(({ value, className }:{ value:string, className:string }) => {
       const button = createElement({
-        element: 'div',
+        element: 'span',
         className: `key ${className}`,
         innerHtml: value,
       });
@@ -40,3 +46,9 @@ export const key = () => {
   }
   body.append(wrapperKey);
 };
+body.addEventListener('keydown', (e) => {
+  // if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+  //   ru = RuAbcShift;
+  console.log(e);
+  // }
+});

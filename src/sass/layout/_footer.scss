@@ -17,8 +17,9 @@
   width: $kb-r-w;
 }
 .key {
- padding-top: 10px;
-  font-size: $mil /2;
+  user-select: none;
+  padding-top: 10px;
+  font-size: $mil / 2;
   display: inline-block;
   text-align: center;
   width: $k-w;
@@ -28,6 +29,10 @@
   background-color: $c-k-bg;
   color: $c-k-c;
   box-shadow: 0px 2px 0px 1px darken($c-kb-bg, 10%);
+  &.backspace,&.capsLock,&.tab,&.enter,
+  &.shift,&.up,&.lft,&.down,&.right,&.rCtrl,&.rAlt,&.lCtrl,&.win,&.lAlt,&.del{
+    background-color: rgb(229, 236, 164);
+  }
   &.backspace {
     width: $k-w-25;
   }
