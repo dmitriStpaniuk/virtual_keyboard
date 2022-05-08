@@ -1,66 +1,139 @@
 import { createElement } from './createElement';
 import {
-  RuAbc, RuAbcShift,
+  getCurrentLanguage,
+  ignor,
   // EnAbc, EnAbcShift,
 } from './state';
 
-let ru = RuAbc;
-
 const { body } = document;
+
 export const pc = () => {
   const wrapper = createElement({
     element: 'div',
     className: 'pc',
+
   });
   const textarea = createElement({
     element: 'textarea',
     className: 'textarea',
+    innerHtml: '',
   });
   body.append(wrapper);
   wrapper.append(textarea);
 };
 
-export const key = () => {
-  const wrapperKey = createElement({
-    element: 'div',
-    className: 'wrapper-key',
-    dataset: {
-      id: '100',
-      name: '200',
-    },
-  });
-  for (let i = 0; i < 5; i += 1) {
-    const keyRow = createElement({
-      element: 'div',
-      className: 'key-row',
-    });
-    ru[i].forEach(({ value, className }:{ value:string, className:string }) => {
-      const button = createElement({
-        element: 'span',
-        className: `key ${className}`,
-        innerHtml: value,
-      });
-      keyRow.append(button);
-    });
-    wrapperKey.append(keyRow);
-  }
-  body.append(wrapperKey);
-};
+// body.addEventListener('keydown', (e) => {
+//   if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+//     ru = RuAbcShift;
+//     body.innerHTML = '';
+//     pc();
+//     key();
+//   }
+// });
+// body.addEventListener('keyup', (e) => {
+//   if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+//     ru = RuAbc;
+//     body.innerHTML = '';
+//     pc();
+//     key();
+//   }
+// });
+
+// creat array enter key
+// backspace
+
+// let text: string[] = [];
+// let output = '';
+// const outputTextarea = (t:string[]) => t.filter((i) => !ignor.includes(i)).join('');
+// body.addEventListener('keyup', (e) => {
+//   text.push(e.key);
+//   const area = document.querySelector('.textarea');
+//   output = outputTextarea(text);
+//   if (area) {
+//     if (e.key === 'Backspace') {
+//       text = text.splice(0, text.length - 2);
+//       output = outputTextarea(text);
+//     }
+//     if (e.key === 'Tab') {
+//       text = text.concat('    ');
+//       output = outputTextarea(text);
+//     }
+//     if (e.key === 'Enter'
+//       text = text.concat('\n');
+//       output = outputTextarea(text);
+//     }
+//     if (e.key === 'ArrowLeft') {
+//       text = text.concat('&#8656');
+//       output = outputTextarea(text);
+//     }
+//     if (e.key === 'ArrowUp') {
+//       text = text.concat('&#8657');
+//       output = outputTextarea(text);
+//     }
+//     if (e.key === 'ArrowRight') {
+//       text = text.concat('&#8658');
+//       output = outputTextarea(text);
+//     }
+//     if (e.key === 'ArrowDown') {
+//       text = text.concat('&#8659');
+//       output = outputTextarea(text);
+//     }
+//     area.innerHTML = output;
+//   }
+// });
+
 body.addEventListener('keydown', (e) => {
-  if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-    ru = RuAbcShift;
-    body.innerHTML = '';
-    pc();
-    key();
-    console.log(e);
+  console.log('e.key: ', e.key, 'e.code: ', e.code, 'e.location: ', e.location);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const textarea: HTMLTextAreaElement = document.querySelector('.textarea');
+  if (textarea) {
+    const end = textarea.selectionEnd;
+    e.preventDefault();
+
+    const buttonFromState = getCurrentLanguage()
+      .flat()
+      .find(({ value, location }) => value === e.key && e.location === location);
+    if (!buttonFromState) {
+      console.error('Wrong button');
+      return;
+    }
+
+    textarea.focus();
+
+    buttonFromState.handleClick(end);
+
+    textarea.selectionStart = buttonFromState.changeCursorPosition(end);
+    textarea.selectionEnd = buttonFromState.changeCursorPosition(end);
+
+    const button = document.querySelector(`[data-name="${e.key.toLowerCase()}"][data-location="${e.location}"]`);
+    button?.classList.add('active');
   }
 });
+
 body.addEventListener('keyup', (e) => {
-  if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-    ru = RuAbc;
-    body.innerHTML = '';
-    pc();
-    key();
-    console.log(e);
+  console.log('e.key: ', e.key, 'e.code: ', e.code, 'e.location: ', e.location);
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const textarea: HTMLTextAreaElement = document.querySelector('.textarea');
+  if (textarea) {
+    e.preventDefault();
+    const buttonFromState = getCurrentLanguage()
+      .flat()
+      .find(({ value, location }) => value === e.key && e.location === location);
+    if (!buttonFromState) {
+      return console.error('Wrong button');
+    }
+
+    textarea.focus();
+    if (buttonFromState.handleKeyUp) buttonFromState.handleKeyUp();
+    return null;
   }
+  return false;
+});
+
+body.addEventListener('keyup', (e) => {
+  const button = document.querySelector(`[data-name="${e.key.toLowerCase()}"][data-location="${e.location}"]`);
+  button?.classList.remove('active');
 });
