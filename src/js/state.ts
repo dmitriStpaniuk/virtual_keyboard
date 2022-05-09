@@ -88,7 +88,7 @@ export const RuAbcBasic: BasicButton[][] = [
     { value: 'д', className: '' },
     { value: 'ж', className: '' },
     { value: 'э', className: '' },
-    { value: '\\', className: '' },
+    { value: '\\', className: 'slash' },
 
   ],
   [
@@ -171,6 +171,7 @@ export const RuAbcShiftBasic = [
     { value: ' ', className: 'space' },
   ],
 ];
+
 const RuAbcShift = formatBasicKeys(RuAbcShiftBasic);
 
 const RuAbcShiftSmall = formatBasicKeys(
@@ -216,7 +217,7 @@ const RuAbcShiftSmall = formatBasicKeys(
       { value: 'д', className: '' },
       { value: 'ж', className: '' },
       { value: 'э', className: '' },
-      { value: '\\', className: '' },
+      { value: '/', className: '' },
 
     ],
     [
@@ -229,7 +230,7 @@ const RuAbcShiftSmall = formatBasicKeys(
       { value: 'ь', className: '' },
       { value: 'б', className: '' },
       { value: 'ю', className: '' },
-      { value: '.', className: '' },
+      { value: ',', className: '' },
     ],
     [
       { value: ' ', className: 'space' },
@@ -238,7 +239,7 @@ const RuAbcShiftSmall = formatBasicKeys(
 );
 const RuAbcCaps = formatBasicKeys([
   [
-    { value: 'ё', className: '' },
+    { value: 'Ё', className: '' },
     { value: '1', className: '' },
     { value: '2', className: '' },
     { value: '3', className: '' },
@@ -278,7 +279,7 @@ const RuAbcCaps = formatBasicKeys([
     { value: 'Д', className: '' },
     { value: 'Ж', className: '' },
     { value: 'Э', className: '' },
-    { value: '/', className: '' },
+    { value: '\\', className: 'slash' },
 
   ],
   [
@@ -291,7 +292,7 @@ const RuAbcCaps = formatBasicKeys([
     { value: 'Ь', className: '' },
     { value: 'Б', className: '' },
     { value: 'Ю', className: '' },
-    { value: ',', className: '' },
+    { value: '.', className: '' },
   ],
   [
     { value: ' ', className: 'space' },
@@ -325,8 +326,8 @@ const EnAbcCaps = formatBasicKeys([
     { value: 'I' },
     { value: 'O' },
     { value: 'P' },
-    { value: '{' },
-    { value: '}' },
+    { value: '[' },
+    { value: ']' },
   ],
   [
     { value: 'A' },
@@ -338,9 +339,9 @@ const EnAbcCaps = formatBasicKeys([
     { value: 'J' },
     { value: 'K' },
     { value: 'L' },
-    { value: ':' },
-    { value: '"' },
-    { value: '|' },
+    { value: ';' },
+    { value: '\'' },
+    { value: '\\' },
   ],
   [
     { value: 'Z' },
@@ -350,9 +351,9 @@ const EnAbcCaps = formatBasicKeys([
     { value: 'B' },
     { value: 'N' },
     { value: 'M' },
-    { value: '<' },
-    { value: '>' },
-    { value: '?' },
+    { value: ',' },
+    { value: '.' },
+    { value: '/' },
   ],
   [
     { value: ' ', className: 'space' },
@@ -484,7 +485,7 @@ const EnAbcShift = formatBasicKeys([
 const EnAbcShiftSmall = formatBasicKeys(
   [
     [
-      { value: '`' },
+      { value: '~' },
       { value: '!' },
       { value: '@' },
       { value: '#' },
@@ -509,8 +510,8 @@ const EnAbcShiftSmall = formatBasicKeys(
       { value: 'i' },
       { value: 'o' },
       { value: 'p' },
-      { value: '[' },
-      { value: ']' },
+      { value: '{' },
+      { value: '}' },
     ],
     [
       { value: 'a' },
@@ -522,9 +523,9 @@ const EnAbcShiftSmall = formatBasicKeys(
       { value: 'j' },
       { value: 'k' },
       { value: 'l' },
-      { value: ';' },
-      { value: "'" },
-      { value: '\\' },
+      { value: ':' },
+      { value: '"' },
+      { value: '|' },
     ],
     [
       { value: 'z' },
@@ -534,9 +535,9 @@ const EnAbcShiftSmall = formatBasicKeys(
       { value: 'b' },
       { value: 'n' },
       { value: 'm' },
-      { value: ',' },
-      { value: '.' },
-      { value: '/' },
+      { value: '<' },
+      { value: '>' },
+      { value: '?' },
     ],
     [{ value: ' ', className: 'space' }],
   ].map((row) => row.map((b) => ({ ...b, className: 'className' in b ? b.className : '' }))),

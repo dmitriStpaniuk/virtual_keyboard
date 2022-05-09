@@ -4,7 +4,6 @@ import {
 } from './state';
 
 const { body } = document;
-
 export const pc = () => {
   const wrapper = createElement({
     element: 'div',
@@ -19,23 +18,6 @@ export const pc = () => {
   body.append(wrapper);
   wrapper.append(textarea);
 };
-
-// body.addEventListener('keydown', (e) => {
-//   if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-//     ru = RuAbcShift;
-//     body.innerHTML = '';
-//     pc();
-//     key();
-//   }
-// });
-// body.addEventListener('keyup', (e) => {
-//   if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
-//     ru = RuAbc;
-//     body.innerHTML = '';
-//     pc();
-//     key();
-//   }
-// });
 
 // creat array enter key
 // backspace
@@ -81,7 +63,7 @@ export const pc = () => {
 // });
 
 body.addEventListener('keydown', (e) => {
-  console.log(e.key);
+  console.log(e);
   const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
   if (textarea) {
     const end = textarea.selectionEnd;
@@ -102,8 +84,18 @@ body.addEventListener('keydown', (e) => {
     textarea.selectionStart = buttonFromState.changeCursorPosition(end);
     textarea.selectionEnd = buttonFromState.changeCursorPosition(end);
 
-    const button = document.querySelector(`[data-name="${e.key.toLowerCase()}"][data-location="${e.location}"]`);
-    button?.classList.add('active');
+    try {
+      const button = document.querySelector(`[data-name="${buttonFromState.value.toLowerCase()}"][data-location="${e.location}"]`);
+      button?.classList.add('active');
+    } catch (error: unknown) {
+      if (e.key === '"') {
+        const button = document.querySelector(`[data-name='${buttonFromState.value.toLowerCase()}'][data-location="${e.location}"]`);
+        button?.classList.add('active');
+      } else {
+        const button = document.querySelector('.slash');
+        button?.classList.add('active');
+      }
+    }
   }
 });
 
@@ -126,6 +118,16 @@ body.addEventListener('keyup', (e) => {
 });
 
 body.addEventListener('keyup', (e) => {
-  const button = document.querySelector(`[data-name="${e.key.toLowerCase()}"][data-location="${e.location}"]`);
-  button?.classList.remove('active');
+  try {
+    const button = document.querySelector(`[data-name="${e.key.toLowerCase()}"][data-location="${e.location}"]`);
+    button?.classList.remove('active');
+  } catch (error: unknown) {
+    if (e.key === '"') {
+      const button = document.querySelector(`[data-name='${e.key.toLowerCase()}'][data-location="${e.location}"]`);
+      button?.classList.remove('active');
+    } else {
+      const button = document.querySelector('.slash');
+      button?.classList.remove('active');
+    }
+  }
 });
