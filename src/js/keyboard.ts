@@ -81,6 +81,7 @@ export const pc = () => {
 // });
 
 body.addEventListener('keydown', (e) => {
+  console.log(e.key);
   const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
   if (textarea) {
     const end = textarea.selectionEnd;

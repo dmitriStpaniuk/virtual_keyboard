@@ -717,14 +717,12 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     location: 2,
     handleClick() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
-      if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return;
-
+      if (lang === 'EnAbcShift' || lang === 'RuAbcShift' || lang === 'RuAbcShiftSmall' || lang === 'EnAbcShiftSmall') return;
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     handleKeyUp() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
-      if (lang === 'EnAbc' || lang === 'RuAbc') return;
-
+      if (lang === 'EnAbc' || lang === 'RuAbc' || lang === 'EnAbcCaps' || lang === 'RuAbcCaps') return;
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     changeCursorPosition(n: number) {

@@ -44,7 +44,7 @@ export const message = () => {
   const messageText = createElement({
     element: 'div',
     className: 'message',
-    innerHtml: 'Переключение языка по Alt + Shift. Убедитесь, что раскладка языка совпадает с системной. Спасибо!',
+    innerHtml: 'Переключение языка по Alt + Shift. Убедитесь, что раскладка языка совпадает с системной. Спасибо! Правый alt одновременно включает левый ctrl, это особенность браузеров т.к. клавиатура сделана на key',
   });
   document.body.append(messageText);
 };

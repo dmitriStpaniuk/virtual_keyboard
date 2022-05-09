@@ -38,6 +38,9 @@ if (wrapper) {
 
       textarea.selectionStart = buttonFromState.changeCursorPosition(end);
       textarea.selectionEnd = buttonFromState.changeCursorPosition(end);
+
+      const b = document.querySelector(`[data-name="${buttonName}"][data-location="${buttonLocation}"]`);
+      b?.classList.add('active');
     }
   });
 
