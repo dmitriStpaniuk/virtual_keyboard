@@ -24,7 +24,7 @@ if (wrapper) {
       const end = textarea.selectionEnd;
 
       e.preventDefault();
-      const buttonFromState = getCurrentLanguage()
+      const buttonFromState = getCurrentLanguage().value
         .flat()
         .find(({ value, location }) => value.toLowerCase() === buttonName.toLowerCase()
         && location === +buttonLocation);
@@ -51,7 +51,7 @@ if (wrapper) {
     const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
     if (textarea) {
       e.preventDefault();
-      const buttonFromState = getCurrentLanguage()
+      const buttonFromState = getCurrentLanguage().value
         .flat()
         .find(({ value, location }) => value.toLowerCase() === buttonName.toLowerCase()
         && location === +buttonLocation);

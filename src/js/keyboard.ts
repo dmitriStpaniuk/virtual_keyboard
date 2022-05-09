@@ -89,7 +89,7 @@ body.addEventListener('keydown', (e) => {
     const end = textarea.selectionEnd;
     e.preventDefault();
 
-    const buttonFromState = getCurrentLanguage()
+    const buttonFromState = getCurrentLanguage().value
       .flat()
       .find(({ value, location }) => value === e.key && e.location === location);
     if (!buttonFromState) {
@@ -117,7 +117,7 @@ body.addEventListener('keyup', (e) => {
   const textarea: HTMLTextAreaElement = document.querySelector('.textarea');
   if (textarea) {
     e.preventDefault();
-    const buttonFromState = getCurrentLanguage()
+    const buttonFromState = getCurrentLanguage().value
       .flat()
       .find(({ value, location }) => value === e.key && e.location === location);
     if (!buttonFromState) {

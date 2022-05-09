@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { key } from './key';
 import { createCombination } from './keyCombinator';
 
@@ -16,6 +17,11 @@ export type RegularButton = {
 type BasicButton = {
   value: string
   className: string
+};
+
+type Keyboard = {
+  value: RegularButton[][],
+  name: string;
 };
 
 let TEXTAREA_VALUE = '';
@@ -169,6 +175,192 @@ export const RuAbcShiftBasic = [
 ];
 const RuAbcShift = formatBasicKeys(RuAbcShiftBasic);
 
+const RuAbcShiftSmall = formatBasicKeys(
+  [
+    [
+      { value: 'ё', className: '' },
+      { value: '!', className: '' },
+      { value: '@', className: '' },
+      { value: '#', className: '' },
+      { value: '$', className: '' },
+      { value: '%', className: '' },
+      { value: '^', className: '' },
+      { value: '&', className: '' },
+      { value: '*', className: '' },
+      { value: '(', className: '' },
+      { value: ')', className: '' },
+      { value: '_', className: '' },
+      { value: '+', className: '' },
+    ],
+    [
+      { value: 'й', className: '' },
+      { value: 'ц', className: '' },
+      { value: 'у', className: '' },
+      { value: 'к', className: '' },
+      { value: 'е', className: '' },
+      { value: 'н', className: '' },
+      { value: 'г', className: '' },
+      { value: 'ш', className: '' },
+      { value: 'щ', className: '' },
+      { value: 'з', className: '' },
+      { value: 'х', className: '' },
+      { value: 'ъ', className: '' },
+    ],
+    [
+      { value: 'ф', className: '' },
+      { value: 'ы', className: '' },
+      { value: 'в', className: '' },
+      { value: 'а', className: '' },
+      { value: 'п', className: '' },
+      { value: 'р', className: '' },
+      { value: 'о', className: '' },
+      { value: 'л', className: '' },
+      { value: 'д', className: '' },
+      { value: 'ж', className: '' },
+      { value: 'э', className: '' },
+      { value: '\\', className: '' },
+
+    ],
+    [
+      { value: 'я', className: '' },
+      { value: 'ч', className: '' },
+      { value: 'с', className: '' },
+      { value: 'м', className: '' },
+      { value: 'и', className: '' },
+      { value: 'т', className: '' },
+      { value: 'ь', className: '' },
+      { value: 'б', className: '' },
+      { value: 'ю', className: '' },
+      { value: '.', className: '' },
+    ],
+    [
+      { value: ' ', className: 'space' },
+    ],
+  ],
+);
+const RuAbcCaps = formatBasicKeys([
+  [
+    { value: 'ё', className: '' },
+    { value: '1', className: '' },
+    { value: '2', className: '' },
+    { value: '3', className: '' },
+    { value: '4', className: '' },
+    { value: '5', className: '' },
+    { value: '6', className: '' },
+    { value: '7', className: '' },
+    { value: '8', className: '' },
+    { value: '9', className: '' },
+    { value: '0', className: '' },
+    { value: '-', className: '' },
+    { value: '=', className: '' },
+  ],
+  [
+    { value: 'Й', className: '' },
+    { value: 'Ц', className: '' },
+    { value: 'У', className: '' },
+    { value: 'К', className: '' },
+    { value: 'Е', className: '' },
+    { value: 'Н', className: '' },
+    { value: 'Г', className: '' },
+    { value: 'Ш', className: '' },
+    { value: 'Щ', className: '' },
+    { value: 'З', className: '' },
+    { value: 'Х', className: '' },
+    { value: 'Ъ', className: '' },
+  ],
+  [
+    { value: 'Ф', className: '' },
+    { value: 'Ы', className: '' },
+    { value: 'В', className: '' },
+    { value: 'А', className: '' },
+    { value: 'П', className: '' },
+    { value: 'Р', className: '' },
+    { value: 'О', className: '' },
+    { value: 'Л', className: '' },
+    { value: 'Д', className: '' },
+    { value: 'Ж', className: '' },
+    { value: 'Э', className: '' },
+    { value: '/', className: '' },
+
+  ],
+  [
+    { value: 'Я', className: '' },
+    { value: 'Ч', className: '' },
+    { value: 'С', className: '' },
+    { value: 'М', className: '' },
+    { value: 'И', className: '' },
+    { value: 'Т', className: '' },
+    { value: 'Ь', className: '' },
+    { value: 'Б', className: '' },
+    { value: 'Ю', className: '' },
+    { value: ',', className: '' },
+  ],
+  [
+    { value: ' ', className: 'space' },
+  ],
+]);
+
+const EnAbcCaps = formatBasicKeys([
+  [
+    { value: '`' },
+    { value: '1' },
+    { value: '2' },
+    { value: '3' },
+    { value: '4' },
+    { value: '5' },
+    { value: '6' },
+    { value: '7' },
+    { value: '8' },
+    { value: '9' },
+    { value: '0' },
+    { value: '-' },
+    { value: '=' },
+  ],
+  [
+    { value: 'Q' },
+    { value: 'W' },
+    { value: 'E' },
+    { value: 'R' },
+    { value: 'T' },
+    { value: 'Y' },
+    { value: 'U' },
+    { value: 'I' },
+    { value: 'O' },
+    { value: 'P' },
+    { value: '{' },
+    { value: '}' },
+  ],
+  [
+    { value: 'A' },
+    { value: 'S' },
+    { value: 'D' },
+    { value: 'F' },
+    { value: 'G' },
+    { value: 'H' },
+    { value: 'J' },
+    { value: 'K' },
+    { value: 'L' },
+    { value: ':' },
+    { value: '"' },
+    { value: '|' },
+  ],
+  [
+    { value: 'Z' },
+    { value: 'X' },
+    { value: 'C' },
+    { value: 'V' },
+    { value: 'B' },
+    { value: 'N' },
+    { value: 'M' },
+    { value: '<' },
+    { value: '>' },
+    { value: '?' },
+  ],
+  [
+    { value: ' ', className: 'space' },
+  ],
+].map((row) => row.map((b) => ({ ...b, className: 'className' in b ? b.className : '' }))));
+
 const EnAbcBasic : BasicButton[][] = [
   [
     { value: '`' },
@@ -229,6 +421,7 @@ const EnAbcBasic : BasicButton[][] = [
 ].map((row) => row.map((b) => ({ ...b, className: 'className' in b ? b.className : '' })));
 
 const EnAbc = formatBasicKeys(EnAbcBasic);
+
 const EnAbcShift = formatBasicKeys([
   [
     { value: '~' },
@@ -290,56 +483,157 @@ const EnAbcShift = formatBasicKeys([
   ],
 ].map((row) => row.map((b) => ({ ...b, className: 'className' in b ? b.className : '' }))));
 
+const EnAbcShiftSmall = formatBasicKeys(
+  [
+    [
+      { value: '`' },
+      { value: '!' },
+      { value: '@' },
+      { value: '#' },
+      { value: '$' },
+      { value: '%' },
+      { value: '^' },
+      { value: '&' },
+      { value: '*' },
+      { value: '(' },
+      { value: ')' },
+      { value: '_' },
+      { value: '+' },
+    ],
+    [
+      { value: 'q' },
+      { value: 'w' },
+      { value: 'e' },
+      { value: 'r' },
+      { value: 't' },
+      { value: 'y' },
+      { value: 'u' },
+      { value: 'i' },
+      { value: 'o' },
+      { value: 'p' },
+      { value: '[' },
+      { value: ']' },
+    ],
+    [
+      { value: 'a' },
+      { value: 's' },
+      { value: 'd' },
+      { value: 'f' },
+      { value: 'g' },
+      { value: 'h' },
+      { value: 'j' },
+      { value: 'k' },
+      { value: 'l' },
+      { value: ';' },
+      { value: "'" },
+      { value: '\\' },
+    ],
+    [
+      { value: 'z' },
+      { value: 'x' },
+      { value: 'c' },
+      { value: 'v' },
+      { value: 'b' },
+      { value: 'n' },
+      { value: 'm' },
+      { value: ',' },
+      { value: '.' },
+      { value: '/' },
+    ],
+    [{ value: ' ', className: 'space' }],
+  ].map((row) => row.map((b) => ({ ...b, className: 'className' in b ? b.className : '' }))),
+);
+
+const RuAbcPacked = {
+  value: RuAbc,
+  name: 'RuAbc' as const,
+};
+
+const RuAbcShiftPacked = {
+  value: RuAbcShift,
+  name: 'RuAbcShift' as const,
+};
+const RuAbcShiftSmallPacked = {
+  value: RuAbcShiftSmall,
+  name: 'RuAbcShiftSmall' as const,
+};
+
+const RuAbcCapsPacked = {
+  value: RuAbcCaps,
+  name: 'RuAbcCaps' as const,
+};
+const EnAbcPacked = {
+  value: EnAbc,
+  name: 'EnAbc' as const,
+};
+
+const EnAbcShiftPacked = {
+  value: EnAbcShift,
+  name: 'EnAbcShift' as const,
+};
+const EnAbcShiftSmallPacked = {
+  value: EnAbcShiftSmall,
+  name: 'EnAbcShiftSmall' as const,
+};
+
+const EnAbcCapsPacked = {
+  value: EnAbcCaps,
+  name: 'EnAbcCaps' as const,
+};
+
 const langFromStorage = window.localStorage.getItem('currentLanguage');
 const langMapper = {
-  RuAbc,
-  RuAbcShift,
-  EnAbc,
-  EnAbcShift,
+  RuAbc: RuAbcPacked,
+  RuAbcShift: RuAbcShiftPacked,
+  RuAbcCaps: RuAbcCapsPacked,
+  EnAbc: EnAbcShiftPacked,
+  EnAbcShift: EnAbcShiftPacked,
+  EnAbcCaps: EnAbcCapsPacked,
 };
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-let currentLanguage: RegularButton[][] = langFromStorage ? langMapper[langFromStorage] : RuAbc;
-
+let currentLanguage: Keyboard = langFromStorage ? langMapper[langFromStorage] : RuAbcPacked;
+console.log('currentLanguage: ', currentLanguage);
 export function getCurrentLanguage() {
   return currentLanguage;
 }
 
 const capsMapper = {
-  RuAbc: RuAbcShift,
-  RuAbcShift: RuAbc,
-  EnAbc: EnAbcShift,
-  EnAbcShift: EnAbc,
+  RuAbc: RuAbcShiftPacked,
+  RuAbcShift: RuAbcPacked,
+  RuAbcCaps: RuAbcShiftSmallPacked,
+  RuAbcShiftSmall: RuAbcCapsPacked,
+  EnAbc: EnAbcShiftPacked,
+  EnAbcShift: EnAbcPacked,
+  EnAbcCaps: EnAbcShiftSmallPacked,
+  EnAbcShiftSmall: EnAbcCapsPacked,
+
 };
 
-const findOutCurrentLanguage = (keyboard: RegularButton[][]) => {
-  switch (keyboard[1][1].value) {
-    case 'й':
-      return 'RuAbc';
-    case 'Й':
-      return 'RuAbcShift';
-    case 'q':
-      return 'EnAbc';
-    case 'Q':
-      return 'EnAbcShift';
-    default: return 'RuAbc';
-  }
+const capsLockMapper = {
+  RuAbc: RuAbcCapsPacked,
+  RuAbcCaps: RuAbcPacked,
+  EnAbc: EnAbcCapsPacked,
+  EnAbcCaps: EnAbcPacked,
 };
 
-export function renderKeyboard(newValue: RegularButton[][] = currentLanguage) {
+const findOutCurrentLanguage = (keyboard: Keyboard) => keyboard.name;
+
+export function renderKeyboard(newValue: Keyboard = currentLanguage) {
   currentLanguage = newValue;
+  console.log(currentLanguage);
   localStorage.setItem('currentLanguage', findOutCurrentLanguage(newValue));
   const oldKeyboard = document.querySelector('.wrapper-key');
   if (oldKeyboard) oldKeyboard.remove();
-  key(newValue);
+  key(newValue.value);
 }
 createCombination(['Shift', 'Alt'], () => {
   const lang = findOutCurrentLanguage(getCurrentLanguage()).slice(0, 2);
   console.log(lang);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  if (lang === 'Ru') renderKeyboard(EnAbc);
-  else { renderKeyboard(RuAbc); }
+  if (lang === 'Ru') renderKeyboard(EnAbcPacked);
+  else { renderKeyboard(RuAbcPacked); }
 });
 
 const specialKeys: Record<string, RegularButton> = Object.entries({
@@ -409,11 +703,13 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     handleClick() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
       if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return;
+      // @ts-ignore
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     handleKeyUp() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
       if (lang === 'EnAbc' || lang === 'RuAbc') return;
+      // @ts-ignore
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     changeCursorPosition(n: number) {
@@ -426,12 +722,14 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     location: 2,
     handleClick() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
-      if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return;
+      if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return; // @ts-ignore
+
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     handleKeyUp() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
-      if (lang === 'EnAbc' || lang === 'RuAbc') return;
+      if (lang === 'EnAbc' || lang === 'RuAbc') return; // @ts-ignore
+
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     changeCursorPosition(n: number) {
@@ -569,7 +867,8 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     value: 'CapsLock',
     className: 'capslock',
     handleClick() {
-      renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
+      // @ts-ignore
+      renderKeyboard(capsLockMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     changeCursorPosition(n: number) {
       return n;
@@ -604,3 +903,9 @@ addSpecialSymbolsToKeyboardState(RuAbc);
 addSpecialSymbolsToKeyboardState(RuAbcShift);
 addSpecialSymbolsToKeyboardState(EnAbc);
 addSpecialSymbolsToKeyboardState(EnAbcShift);
+addSpecialSymbolsToKeyboardState(EnAbcCaps);
+addSpecialSymbolsToKeyboardState(RuAbcCaps);
+addSpecialSymbolsToKeyboardState(RuAbcShiftSmall);
+addSpecialSymbolsToKeyboardState(EnAbcShiftSmall);
+
+console.log(EnAbcCaps);
