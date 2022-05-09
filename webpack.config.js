@@ -50,7 +50,6 @@ module.exports = ({ develop }) => ({
       extensions: ['js', 'ts'],
       emitWarning: false,
       failOnWarning: false,
-
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

@@ -29,14 +29,27 @@
   background-color: $c-k-bg;
   color: $c-k-c;
   box-shadow: 0px 2px 0px 1px darken($c-kb-bg, 10%);
-  &.backspace,&.capsLock,&.tab,&.enter,
-  &.shift,&.up,&.lft,&.down,&.right,&.rCtrl,&.rAlt,&.lCtrl,&.win,&.lAlt,&.del{
+  &.backspace,
+  &.capslock,
+  &.tab,
+  &.enter,
+  &.shift,
+  &.up,
+  &.lft,
+  &.down,
+  &.right,
+  &.RCtrl,
+  &.rAlt,
+  &.lCtrl,
+  &.win,
+  &.alt,
+  &.del {
     background-color: rgb(229, 236, 164);
   }
   &.backspace {
     width: $k-w-25;
   }
-  &.capsLock {
+  &.capslock {
     width: $k-w-3;
   }
   &.tab {
@@ -49,4 +62,13 @@
   &.space {
     width: 275px;
   }
+}
+.active {
+  background-color: $brand-color !important;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  margin: 24px auto 0;
 }

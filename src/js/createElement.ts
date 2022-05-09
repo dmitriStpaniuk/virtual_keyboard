@@ -2,11 +2,12 @@ type ElementData = {
   element: string,
   className: string,
   innerHtml?: string,
+  dataId?: string
   dataset?: Record<string, string>
 };
 
 export const createElement = ({
-  element, className, innerHtml, dataset,
+  element, className, innerHtml, dataset, dataId,
 }: ElementData) => {
   const block = document.createElement(element);
 

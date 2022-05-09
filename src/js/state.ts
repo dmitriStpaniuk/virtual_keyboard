@@ -1,4 +1,48 @@
-export const RuAbc = [
+import { key } from './key';
+import { createCombination } from './keyCombinator';
+
+export const ignor = ['Delete', 'AltGraph', 'ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'Tab', 'Backspace', 'CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'ContextMenu', 'Enter'];
+
+export type RegularButton = {
+  name?: string;
+  value: string;
+  className: string;
+  location: number;
+  handleClick: (end: number) => void;
+  handleKeyUp? : () => void
+  changeCursorPosition: (end: number) => number
+};
+
+type BasicButton = {
+  value: string
+  className: string
+};
+
+let TEXTAREA_VALUE = '';
+
+const setTextareaValue = (fn: (oldValue: string) => string) => {
+  TEXTAREA_VALUE = fn(TEXTAREA_VALUE);
+  const textarea = document.querySelector('.textarea');
+  if (textarea) textarea.innerHTML = TEXTAREA_VALUE;
+};
+
+const formatBasicKeys = (keyboard: BasicButton[][]): RegularButton[][] => (
+  keyboard.map((row) => row.map((button) => ({
+    ...button,
+    location: 0,
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end);
+        return `${before}${this.value}${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n + 1;
+    },
+  }))));
+
+export const RuAbcBasic: BasicButton[][] = [
   [
     { value: 'ё', className: '' },
     { value: '1', className: '' },
@@ -13,10 +57,8 @@ export const RuAbc = [
     { value: '0', className: '' },
     { value: '-', className: '' },
     { value: '=', className: '' },
-    { value: 'Backspace', className: 'backspace' },
   ],
   [
-    { value: 'Tab', className: 'tab' },
     { value: 'й', className: '' },
     { value: 'ц', className: '' },
     { value: 'у', className: '' },
@@ -29,11 +71,8 @@ export const RuAbc = [
     { value: 'з', className: '' },
     { value: 'х', className: '' },
     { value: 'ъ', className: '' },
-    { value: '\\', className: '' },
-    { value: 'Del', className: 'del' },
   ],
   [
-    { value: 'CapsLock', className: 'capsLock' },
     { value: 'ф', className: '' },
     { value: 'ы', className: '' },
     { value: 'в', className: '' },
@@ -45,10 +84,10 @@ export const RuAbc = [
     { value: 'д', className: '' },
     { value: 'ж', className: '' },
     { value: 'э', className: '' },
-    { value: 'Enter', className: 'enter' },
+    { value: '\\', className: '' },
+
   ],
   [
-    { value: 'Shift', className: 'shift' },
     { value: 'я', className: '' },
     { value: 'ч', className: '' },
     { value: 'с', className: '' },
@@ -59,22 +98,15 @@ export const RuAbc = [
     { value: 'б', className: '' },
     { value: 'ю', className: '' },
     { value: '.', className: '' },
-    { value: '&#8657;', className: 'up' },
-    { value: 'Shift', className: 'shift' },
   ],
   [
-    { value: 'Ctrl', className: 'lCtrl' },
-    { value: 'Win', className: 'win' },
-    { value: 'Alt', className: 'lAlt' },
     { value: ' ', className: 'space' },
-    { value: 'Alt', className: 'rAlt' },
-    { value: '&#8656', className: 'lft' },
-    { value: '&#8659', className: 'down' },
-    { value: '&#8658', className: 'right' },
-    { value: 'Ctrl', className: 'rCtrl' },
   ],
 ];
-export const RuAbcShift = [
+
+const RuAbc = formatBasicKeys(RuAbcBasic);
+
+export const RuAbcShiftBasic = [
   [
     { value: 'Ё', className: '' },
     { value: '!', className: '' },
@@ -89,10 +121,8 @@ export const RuAbcShift = [
     { value: ')', className: '' },
     { value: '_', className: '' },
     { value: '+', className: '' },
-    { value: 'Backspace', className: 'backspace' },
   ],
   [
-    { value: 'Tab', className: 'tab' },
     { value: 'Й', className: '' },
     { value: 'Ц', className: '' },
     { value: 'У', className: '' },
@@ -105,11 +135,8 @@ export const RuAbcShift = [
     { value: 'З', className: '' },
     { value: 'Х', className: '' },
     { value: 'Ъ', className: '' },
-    { value: '/', className: '' },
-    { value: 'Del', className: 'del' },
   ],
   [
-    { value: 'CapsLock', className: 'capsLock' },
     { value: 'Ф', className: '' },
     { value: 'Ы', className: '' },
     { value: 'В', className: '' },
@@ -121,10 +148,10 @@ export const RuAbcShift = [
     { value: 'Д', className: '' },
     { value: 'Ж', className: '' },
     { value: 'Э', className: '' },
-    { value: 'Enter', className: 'enter' },
+    { value: '/', className: '' },
+
   ],
   [
-    { value: 'Shift', className: 'shift' },
     { value: 'Я', className: '' },
     { value: 'Ч', className: '' },
     { value: 'С', className: '' },
@@ -135,22 +162,14 @@ export const RuAbcShift = [
     { value: 'Б', className: '' },
     { value: 'Ю', className: '' },
     { value: ',', className: '' },
-    { value: '&#8657;', className: 'up' },
-    { value: 'Shift', className: 'shift' },
   ],
   [
-    { value: 'Ctrl', className: 'lCtrl' },
-    { value: 'Win', className: 'win' },
-    { value: 'Alt', className: 'lAlt' },
     { value: ' ', className: 'space' },
-    { value: 'Alt', className: 'rAlt' },
-    { value: '&#8656', className: 'lft' },
-    { value: '&#8659', className: 'down' },
-    { value: '&#8658', className: 'right' },
-    { value: 'Ctrl', className: 'rCtrl' },
   ],
 ];
-const EnAbc = [
+const RuAbcShift = formatBasicKeys(RuAbcShiftBasic);
+
+const EnAbcBasic : BasicButton[][] = [
   [
     { value: '`' },
     { value: '1' },
@@ -165,7 +184,6 @@ const EnAbc = [
     { value: '0' },
     { value: '-' },
     { value: '=' },
-    { value: 'Backspace' },
   ],
   [
     { value: 'q' },
@@ -207,8 +225,11 @@ const EnAbc = [
     { value: '.' },
     { value: '/' },
   ],
-];
-const EnAbcShift = [
+  [{ value: ' ', className: 'space' }],
+].map((row) => row.map((b) => ({ ...b, className: 'className' in b ? b.className : '' })));
+
+const EnAbc = formatBasicKeys(EnAbcBasic);
+const EnAbcShift = formatBasicKeys([
   [
     { value: '~' },
     { value: '!' },
@@ -223,7 +244,6 @@ const EnAbcShift = [
     { value: ')' },
     { value: '_' },
     { value: '+' },
-    { value: 'Backspace' },
   ],
   [
     { value: 'Q' },
@@ -265,4 +285,322 @@ const EnAbcShift = [
     { value: '>' },
     { value: '?' },
   ],
-];
+  [
+    { value: ' ', className: 'space' },
+  ],
+].map((row) => row.map((b) => ({ ...b, className: 'className' in b ? b.className : '' }))));
+
+const langFromStorage = window.localStorage.getItem('currentLanguage');
+const langMapper = {
+  RuAbc,
+  RuAbcShift,
+  EnAbc,
+  EnAbcShift,
+};
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+let currentLanguage: RegularButton[][] = langFromStorage ? langMapper[langFromStorage] : RuAbc;
+
+export function getCurrentLanguage() {
+  return currentLanguage;
+}
+
+const capsMapper = {
+  RuAbc: RuAbcShift,
+  RuAbcShift: RuAbc,
+  EnAbc: EnAbcShift,
+  EnAbcShift: EnAbc,
+};
+
+const findOutCurrentLanguage = (keyboard: RegularButton[][]) => {
+  switch (keyboard[1][1].value) {
+    case 'й':
+      return 'RuAbc';
+    case 'Й':
+      return 'RuAbcShift';
+    case 'q':
+      return 'EnAbc';
+    case 'Q':
+      return 'EnAbcShift';
+    default: return 'RuAbc';
+  }
+};
+
+export function renderKeyboard(newValue: RegularButton[][] = currentLanguage) {
+  currentLanguage = newValue;
+  localStorage.setItem('currentLanguage', findOutCurrentLanguage(newValue));
+  const oldKeyboard = document.querySelector('.wrapper-key');
+  if (oldKeyboard) oldKeyboard.remove();
+  key(newValue);
+}
+createCombination(['Shift', 'Alt'], () => {
+  const lang = findOutCurrentLanguage(getCurrentLanguage()).slice(0, 2);
+  console.log(lang);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if (lang === 'Ru') renderKeyboard(EnAbc);
+  else { renderKeyboard(RuAbc); }
+});
+
+const specialKeys: Record<string, RegularButton> = Object.entries({
+  backSpace: {
+    value: 'Backspace',
+    className: 'backspace',
+    handleClick(end: number) {
+      if (end === 0) return;
+      setTextareaValue((old) => {
+        const before = old.slice(0, end - 1);
+        const after = old.slice(end);
+        return `${before}${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      if (n === 0) return n;
+      return n - 1;
+    },
+  },
+  tab: {
+    value: 'Tab',
+    className: 'tab',
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end);
+        return `${before}    ${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n + 4;
+    },
+  },
+  enter: {
+    value: 'Enter',
+    className: 'enter',
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end);
+        return `${before}\n${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n + 1;
+    },
+  },
+  del: {
+    value: 'Delete',
+    className: 'del',
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end + 1);
+        return `${before}${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+  leftShift:
+  {
+    value: 'Shift',
+    className: 'shift',
+    location: 1,
+    handleClick() {
+      const lang = findOutCurrentLanguage(getCurrentLanguage());
+      if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return;
+      renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
+    },
+    handleKeyUp() {
+      const lang = findOutCurrentLanguage(getCurrentLanguage());
+      if (lang === 'EnAbc' || lang === 'RuAbc') return;
+      renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+  rightShift: {
+    value: 'Shift',
+    className: 'shift',
+    location: 2,
+    handleClick() {
+      const lang = findOutCurrentLanguage(getCurrentLanguage());
+      if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return;
+      renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
+    },
+    handleKeyUp() {
+      const lang = findOutCurrentLanguage(getCurrentLanguage());
+      if (lang === 'EnAbc' || lang === 'RuAbc') return;
+      renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+  altLeft: {
+    value: 'Alt',
+    className: 'alt',
+    location: 1,
+    handleClick() {
+      console.log('click');
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+  altRight: {
+    value: 'Alt',
+    className: 'alt',
+    location: 2,
+    handleClick() {
+
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+  altRightRu: {
+    value: 'AltGraph',
+    name: 'Alt',
+    className: 'alt',
+    location: 2,
+    handleClick() {
+
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+  meta: {
+    value: 'Meta',
+    name: 'Win',
+    className: 'win',
+    location: 1,
+    handleClick() {
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+  controlLeft: {
+    value: 'Control',
+    name: 'Ctrl',
+    className: 'lCtrl',
+    handleClick() {
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+    location: 1,
+  },
+  controlRight: {
+    value: 'Control',
+    name: 'Ctrl',
+    className: 'RCtrl',
+    handleClick() {
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+    location: 2,
+  },
+  arrowLeft: {
+    name: '&#8656',
+    value: 'ArrowLeft',
+    className: 'lft',
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end);
+        return `${before}←${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n + 1;
+    },
+  },
+  arrowUp: {
+    name: '&#8657',
+    value: 'ArrowUp',
+    className: 'lft',
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end);
+        return `${before}↑${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n + 1;
+    },
+  },
+  arrowDown: {
+    name: '&#8659',
+    value: 'ArrowDown',
+    className: 'down',
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end);
+        return `${before}↓${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n + 1;
+    },
+  },
+  arrowRight: {
+    name: '&#8658',
+    value: 'ArrowRight',
+    className: 'down',
+    handleClick(end: number) {
+      setTextareaValue((old) => {
+        const before = old.slice(0, end);
+        const after = old.slice(end);
+        return `${before}→${after}`;
+      });
+    },
+    changeCursorPosition(n: number) {
+      return n + 1;
+    },
+  },
+  capsLock: {
+    value: 'CapsLock',
+    className: 'capslock',
+    handleClick() {
+      renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
+    },
+    changeCursorPosition(n: number) {
+      return n;
+    },
+  },
+
+}).reduce(
+  (acc, [objKey, value]) => ({ ...acc, [objKey]: { ...value, location: value.location || 0 } }),
+  {},
+);
+
+const addSpecialSymbolsToKeyboardState = (keyboard: RegularButton[][]) => {
+  keyboard[0].push(specialKeys.backSpace);
+  keyboard[1].unshift(specialKeys.tab);
+  keyboard[1].push(specialKeys.del);
+  keyboard[2].push(specialKeys.enter);
+  keyboard[2].unshift(specialKeys.capsLock);
+  keyboard[3].unshift(specialKeys.leftShift);
+  keyboard[3].push(specialKeys.arrowUp);
+  keyboard[3].push(specialKeys.rightShift);
+
+  keyboard[4].unshift(specialKeys.altLeft);
+  keyboard[4].unshift(specialKeys.meta);
+  keyboard[4].unshift(specialKeys.controlLeft);
+  keyboard[4].push(specialKeys.altRightRu);
+  keyboard[4].push(specialKeys.arrowLeft);
+  keyboard[4].push(specialKeys.arrowDown);
+  keyboard[4].push(specialKeys.arrowRight);
+  keyboard[4].push(specialKeys.controlRight);
+};
+addSpecialSymbolsToKeyboardState(RuAbc);
+addSpecialSymbolsToKeyboardState(RuAbcShift);
+addSpecialSymbolsToKeyboardState(EnAbc);
+addSpecialSymbolsToKeyboardState(EnAbcShift);
