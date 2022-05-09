@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { key } from './key';
 import { createCombination } from './keyCombinator';
 
-export const ignor = ['Delete', 'AltGraph', 'ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'Tab', 'Backspace', 'CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'ContextMenu', 'Enter'];
-
+type LangNames = 'RuAbc' | 'RuAbcShift' | 'RuAbcCaps' | 'RuAbcShiftSmall' | 'EnAbc' | 'EnAbcShift' | 'EnAbcCaps' | 'EnAbcShiftSmall';
 export type RegularButton = {
   name?: string;
   value: string;
@@ -581,7 +579,7 @@ const EnAbcCapsPacked = {
   name: 'EnAbcCaps' as const,
 };
 
-const langFromStorage = window.localStorage.getItem('currentLanguage');
+const langFromStorage = window.localStorage.getItem('currentLanguage') as LangNames;
 const langMapper = {
   RuAbc: RuAbcPacked,
   RuAbcShift: RuAbcShiftPacked,
@@ -589,11 +587,10 @@ const langMapper = {
   EnAbc: EnAbcShiftPacked,
   EnAbcShift: EnAbcShiftPacked,
   EnAbcCaps: EnAbcCapsPacked,
+  RuAbcShiftSmall: RuAbcShiftSmallPacked,
+  EnAbcShiftSmall: EnAbcShiftSmallPacked,
 };
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 let currentLanguage: Keyboard = langFromStorage ? langMapper[langFromStorage] : RuAbcPacked;
-console.log('currentLanguage: ', currentLanguage);
 export function getCurrentLanguage() {
   return currentLanguage;
 }
@@ -613,15 +610,18 @@ const capsMapper = {
 const capsLockMapper = {
   RuAbc: RuAbcCapsPacked,
   RuAbcCaps: RuAbcPacked,
+  RuAbcShift: RuAbcCapsPacked,
+  RuAbcShiftSmall: RuAbcPacked,
   EnAbc: EnAbcCapsPacked,
   EnAbcCaps: EnAbcPacked,
+  EnAbcShift: EnAbcCapsPacked,
+  EnAbcShiftSmall: EnAbcPacked,
 };
 
-const findOutCurrentLanguage = (keyboard: Keyboard) => keyboard.name;
+const findOutCurrentLanguage = (keyboard: Keyboard) => keyboard.name as LangNames;
 
 export function renderKeyboard(newValue: Keyboard = currentLanguage) {
   currentLanguage = newValue;
-  console.log(currentLanguage);
   localStorage.setItem('currentLanguage', findOutCurrentLanguage(newValue));
   const oldKeyboard = document.querySelector('.wrapper-key');
   if (oldKeyboard) oldKeyboard.remove();
@@ -629,9 +629,6 @@ export function renderKeyboard(newValue: Keyboard = currentLanguage) {
 }
 createCombination(['Shift', 'Alt'], () => {
   const lang = findOutCurrentLanguage(getCurrentLanguage()).slice(0, 2);
-  console.log(lang);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   if (lang === 'Ru') renderKeyboard(EnAbcPacked);
   else { renderKeyboard(RuAbcPacked); }
 });
@@ -703,13 +700,11 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     handleClick() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
       if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return;
-      // @ts-ignore
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     handleKeyUp() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
       if (lang === 'EnAbc' || lang === 'RuAbc') return;
-      // @ts-ignore
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     changeCursorPosition(n: number) {
@@ -722,13 +717,13 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     location: 2,
     handleClick() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
-      if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return; // @ts-ignore
+      if (lang === 'EnAbcShift' || lang === 'RuAbcShift') return;
 
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     handleKeyUp() {
       const lang = findOutCurrentLanguage(getCurrentLanguage());
-      if (lang === 'EnAbc' || lang === 'RuAbc') return; // @ts-ignore
+      if (lang === 'EnAbc' || lang === 'RuAbc') return;
 
       renderKeyboard(capsMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
@@ -741,7 +736,6 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     className: 'alt',
     location: 1,
     handleClick() {
-      console.log('click');
     },
     changeCursorPosition(n: number) {
       return n;
@@ -867,7 +861,6 @@ const specialKeys: Record<string, RegularButton> = Object.entries({
     value: 'CapsLock',
     className: 'capslock',
     handleClick() {
-      // @ts-ignore
       renderKeyboard(capsLockMapper[findOutCurrentLanguage(getCurrentLanguage())]);
     },
     changeCursorPosition(n: number) {
@@ -907,5 +900,3 @@ addSpecialSymbolsToKeyboardState(EnAbcCaps);
 addSpecialSymbolsToKeyboardState(RuAbcCaps);
 addSpecialSymbolsToKeyboardState(RuAbcShiftSmall);
 addSpecialSymbolsToKeyboardState(EnAbcShiftSmall);
-
-console.log(EnAbcCaps);

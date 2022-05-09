@@ -18,7 +18,6 @@ if (wrapper) {
     const buttonLocation = button.getAttribute('data-location');
     if (!buttonName || !buttonLocation) return;
     button?.classList.add('active');
-    console.log(buttonName.toLowerCase());
     const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
     if (textarea) {
       const end = textarea.selectionEnd;
@@ -61,7 +60,6 @@ if (wrapper) {
       }
 
       textarea.focus();
-      console.log(buttonFromState);
       if (buttonFromState.handleKeyUp) buttonFromState.handleKeyUp();
       button?.classList.remove('active');
     }

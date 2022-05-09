@@ -81,10 +81,7 @@ export const pc = () => {
 // });
 
 body.addEventListener('keydown', (e) => {
-  console.log('e.key: ', e.key, 'e.code: ', e.code, 'e.location: ', e.location);
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const textarea: HTMLTextAreaElement = document.querySelector('.textarea');
+  const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
   if (textarea) {
     const end = textarea.selectionEnd;
     e.preventDefault();
@@ -110,11 +107,7 @@ body.addEventListener('keydown', (e) => {
 });
 
 body.addEventListener('keyup', (e) => {
-  console.log('e.key: ', e.key, 'e.code: ', e.code, 'e.location: ', e.location);
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const textarea: HTMLTextAreaElement = document.querySelector('.textarea');
+  const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
   if (textarea) {
     e.preventDefault();
     const buttonFromState = getCurrentLanguage().value
