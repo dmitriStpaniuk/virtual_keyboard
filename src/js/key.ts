@@ -39,3 +39,12 @@ export const key = (letters: RegularButton[][]) => {
   }
   document.body.append(wrapperKey);
 };
+
+export const message = () => {
+  const messageText = createElement({
+    element: 'div',
+    className: 'message',
+    innerHtml: 'Переключение языка по Alt + Shift. Убедитесь, что раскладка языка совподает с системной. Спасибо!',
+  });
+  document.body.append(messageText);
+};

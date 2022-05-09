@@ -1,8 +1,6 @@
 import { createElement } from './createElement';
 import {
   getCurrentLanguage,
-  ignor,
-  // EnAbc, EnAbcShift,
 } from './state';
 
 const { body } = document;
