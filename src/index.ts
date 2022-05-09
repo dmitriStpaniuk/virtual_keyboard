@@ -18,13 +18,12 @@ if (wrapper) {
     const buttonLocation = button.getAttribute('data-location');
     if (!buttonName || !buttonLocation) return;
     button?.classList.add('active');
-    console.log(buttonName.toLowerCase());
     const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
     if (textarea) {
       const end = textarea.selectionEnd;
 
       e.preventDefault();
-      const buttonFromState = getCurrentLanguage()
+      const buttonFromState = getCurrentLanguage().value
         .flat()
         .find(({ value, location }) => value.toLowerCase() === buttonName.toLowerCase()
         && location === +buttonLocation);
@@ -51,7 +50,7 @@ if (wrapper) {
     const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
     if (textarea) {
       e.preventDefault();
-      const buttonFromState = getCurrentLanguage()
+      const buttonFromState = getCurrentLanguage().value
         .flat()
         .find(({ value, location }) => value.toLowerCase() === buttonName.toLowerCase()
         && location === +buttonLocation);
@@ -61,7 +60,6 @@ if (wrapper) {
       }
 
       textarea.focus();
-      console.log(buttonFromState);
       if (buttonFromState.handleKeyUp) buttonFromState.handleKeyUp();
       button?.classList.remove('active');
     }
