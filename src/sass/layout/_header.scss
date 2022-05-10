@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+.pc{
+    max-height: $m-h-s + ($kb-inset * 8);
+    margin: 24px auto 0;
+    padding: $kb-inset * 4;
+    border-color: $c-mac;
+    box-shadow: 0px 2px 0px 1px ;
+    width: $m-w-s + ($kb-inset * 2);
+    border-radius: 16px;
+    background-color: rgb(250, 248, 151);
+    
+}
+textarea{
+    
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    resize: none;
+    font-family: Inconsolata, monospace;
+    padding: 24px;
+    font-size:12px;
+    line-height: 1.4;
+    background-color: #222;
+    color: #fff;
+    height: $m-h-s;
+    width: 100%;
+}
