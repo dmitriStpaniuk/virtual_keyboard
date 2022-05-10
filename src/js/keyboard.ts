@@ -19,49 +19,6 @@ export const pc = () => {
   wrapper.append(textarea);
 };
 
-// creat array enter key
-// backspace
-
-// let text: string[] = [];
-// let output = '';
-// const outputTextarea = (t:string[]) => t.filter((i) => !ignor.includes(i)).join('');
-// body.addEventListener('keyup', (e) => {
-//   text.push(e.key);
-//   const area = document.querySelector('.textarea');
-//   output = outputTextarea(text);
-//   if (area) {
-//     if (e.key === 'Backspace') {
-//       text = text.splice(0, text.length - 2);
-//       output = outputTextarea(text);
-//     }
-//     if (e.key === 'Tab') {
-//       text = text.concat('    ');
-//       output = outputTextarea(text);
-//     }
-//     if (e.key === 'Enter'
-//       text = text.concat('\n');
-//       output = outputTextarea(text);
-//     }
-//     if (e.key === 'ArrowLeft') {
-//       text = text.concat('&#8656');
-//       output = outputTextarea(text);
-//     }
-//     if (e.key === 'ArrowUp') {
-//       text = text.concat('&#8657');
-//       output = outputTextarea(text);
-//     }
-//     if (e.key === 'ArrowRight') {
-//       text = text.concat('&#8658');
-//       output = outputTextarea(text);
-//     }
-//     if (e.key === 'ArrowDown') {
-//       text = text.concat('&#8659');
-//       output = outputTextarea(text);
-//     }
-//     area.innerHTML = output;
-//   }
-// });
-
 body.addEventListener('keydown', (e) => {
   console.log(e);
   const textarea = document.querySelector('.textarea') as HTMLTextAreaElement;
